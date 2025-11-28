@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -16,5 +16,550 @@
   ></df-messenger>
 
   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Fundamentals Assistant - Your Interactive AI Learning Companion</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 100px 20px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,138.7C960,139,1056,117,1152,112C1248,107,1344,117,1392,122.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+      background-size: cover;
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Features Section */
+    .features {
+      padding: 80px 20px;
+      background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #7f8c8d;
+      margin-bottom: 60px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 35px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      border: 1px solid #e8e8e8;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .feature-card p {
+      color: #5a6c7d;
+      line-height: 1.7;
+    }
+
+    /* Topics Section */
+    .topics {
+      padding: 80px 20px;
+      background: white;
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .topic-tag {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px 25px;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .topic-tag:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 80px 20px;
+      background: linear-gradient(to bottom, #f8f9fa, #e8f5e9);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 50px;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .step h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .step p {
+      color: #5a6c7d;
+      line-height: 1.7;
+    }
+
+    /* Capabilities Section */
+    .capabilities {
+      padding: 80px 20px;
+      background: white;
+    }
+
+    .capability-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .capability-item {
+      display: flex;
+      align-items: flex-start;
+      padding: 25px;
+      background: #f8f9fa;
+      border-radius: 12px;
+      border-left: 4px solid #667eea;
+    }
+
+    .capability-item::before {
+      content: '✓';
+      font-size: 1.5rem;
+      color: #667eea;
+      font-weight: bold;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+
+    .capability-item p {
+      color: #2c3e50;
+      line-height: 1.6;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .cta-button-white {
+      display: inline-block;
+      padding: 15px 40px;
+      background: white;
+      color: #667eea;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .cta-button-white:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+    }
+
+    footer p {
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      margin-top: 20px;
+    }
+
+    .footer-links a {
+      color: #667eea;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #764ba2;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .features-grid,
+      .topics-grid,
+      .steps,
+      .capability-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-icon">🧠</div>
+      <h1>AI Fundamentals Assistant</h1>
+      <p>Your interactive knowledge companion for mastering artificial intelligence concepts, from basics to advanced topics</p>
+      <a href="#start-chat" class="cta-button">Start Learning Now</a>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why Choose Our AI Assistant?</h2>
+      <p class="section-subtitle">An intelligent chatbot designed to make AI education accessible, engaging, and comprehensive</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">💬</span>
+          <h3>Natural Conversations</h3>
+          <p>Engage in fluid, context-aware discussions with follow-up questions and detailed explanations tailored to your learning pace</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">📚</span>
+          <h3>Comprehensive Coverage</h3>
+          <p>Explore 15+ core AI topics including ML, NLP, LLMs, Neural Networks, Computer Vision, and ethical considerations</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3>Guided Learning Paths</h3>
+          <p>Follow structured conversation flows on specific topics like NLP fundamentals or AI ethics with personalized recommendations</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🔗</span>
+          <h3>Connected Concepts</h3>
+          <p>Discover relationships between AI topics with intelligent cross-linking and contextual suggestions</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Visual Learning</h3>
+          <p>Access diagrams, visualizations, and multimedia content to enhance understanding of complex concepts</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3>Course Integration</h3>
+          <p>Get curated recommendations for bootcamp modules with citations to relevant learning materials</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics Covered -->
+  <section class="topics">
+    <div class="container">
+      <h2 class="section-title">Topics You Can Explore</h2>
+      <p class="section-subtitle">Click on any topic in the chatbot to start your learning journey</p>
+      
+      <div class="topics-grid">
+        <div class="topic-tag">Machine Learning</div>
+        <div class="topic-tag">Natural Language Processing</div>
+        <div class="topic-tag">Large Language Models</div>
+        <div class="topic-tag">Neural Networks</div>
+        <div class="topic-tag">Computer Vision</div>
+        <div class="topic-tag">Deep Learning</div>
+        <div class="topic-tag">AI vs ML vs DL</div>
+        <div class="topic-tag">Real-World Applications</div>
+        <div class="topic-tag">AI Ethics</div>
+        <div class="topic-tag">Industry Use Cases</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Get started in three simple steps</p>
+      
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Open the Chat</h3>
+          <p>Click the chat icon in the bottom right corner to start your conversation with our AI assistant</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Ask Questions</h3>
+          <p>Type your AI-related questions or choose from suggested topics to begin learning</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Explore & Learn</h3>
+          <p>Dive deeper with follow-up questions and explore recommended courses for comprehensive understanding</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section class="capabilities">
+    <div class="container">
+      <h2 class="section-title">Advanced Capabilities</h2>
+      <p class="section-subtitle">Built with cutting-edge conversational AI technology</p>
+      
+      <div class="capability-list">
+        <div class="capability-item">
+          <p><strong>Multi-turn conversations</strong> - Handles 3+ follow-up questions while maintaining context</p>
+        </div>
+        
+        <div class="capability-item">
+          <p><strong>Intelligent recommendations</strong> - Suggests relevant course modules based on your interests</p>
+        </div>
+        
+        <div class="capability-item">
+          <p><strong>Accurate citations</strong> - Provides references to bootcamp materials and trusted sources</p>
+        </div>
+        
+        <div class="capability-item">
+          <p><strong>Concept linking</strong> - Automatically connects related AI topics for holistic learning</p>
+        </div>
+        
+        <div class="capability-item">
+          <p><strong>Edge case handling</strong> - Gracefully manages unclear queries with clarifying questions</p>
+        </div>
+        
+        <div class="capability-item">
+          <p><strong>Feedback integration</strong> - Continuously improves based on user interactions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" id="start-chat">
+    <div class="container">
+      <h2>Ready to Master AI Fundamentals?</h2>
+      <p>Start chatting with our AI assistant now and accelerate your learning journey</p>
+      <a href="#" class="cta-button-white" onclick="openChat(); return false;">Launch Chatbot</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 AI Fundamentals Assistant. Educational Chatbot Project.</p>
+      <p>Built with Dialogflow | Powered by Google Cloud</p>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#topics">Topics</a>
+        <a href="#start-chat">Get Started</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dialogflow Messenger -->
+  <df-messenger
+    chat-title="AI Fundamentals Assistant"
+    chat-icon="🧠"
+    chat-color="#3F51B5"
+    background-color="#E8F5E9"
+    agent-id="7ae2a6b8-69f4-4825-9e7f-8c9a2f9944cf"
+    language-code="en"
+  ></df-messenger>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+  <script>
+    function openChat() {
+      const messenger = document.querySelector('df-messenger');
+      if (messenger) {
+        messenger.renderCustomText('Hello! I\'m ready to help you learn about AI. What would you like to explore today?');
+        const chatButton = messenger.shadowRoot.querySelector('.chat-wrapper');
+        if (chatButton) chatButton.click();
+      }
+    }
+  </script>
 </body>
 </html>
