@@ -456,7 +456,7 @@
 <section class="cta-section" id="chat">
   <h2>Ready to Start Your AI Journey?</h2>
   <p>Click the button below to launch the chatbot instantly.</p>
-  <a href="#" class="cta-button" ">Launch Chatbot</a>
+  <a href="#" class="cta-button launch-chatbot" ">Launch Chatbot</a>
 </section>
 
 
@@ -471,9 +471,22 @@
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
   intent="WELCOME"
-  chat-title="Agent5"
+  chat-title="AI Fundamentals Assistant"
+  chat-icon="🧠"
   agent-id="7ae2a6b8-69f4-4825-9e7f-8c9a2f9944cf"
   language-code="en"
 ></df-messenger>
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const launchBtn = document.querySelector(".cta-button.launch-chatbot");
+    const dfMessenger = document.querySelector("df-messenger");
+
+    launchBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      const fab = dfMessenger.shadowRoot.querySelector("df-messenger-button");
+      fab.shadowRoot.querySelector("button").click();
+    });
+  });
+</script>
 </body>
 </html>
