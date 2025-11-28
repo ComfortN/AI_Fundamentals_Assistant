@@ -456,7 +456,7 @@
 <section class="cta-section" id="chat">
   <h2>Ready to Start Your AI Journey?</h2>
   <p>Click the button below to launch the chatbot instantly.</p>
-  <a href="#" class="cta-button" onclick="openChatbot()">Launch Chatbot</a>
+  <a href="#" class="cta-button" ">Launch Chatbot</a>
 </section>
 
 
@@ -466,6 +466,11 @@
     <p>Built with Dialogflow | Educational Chatbot Project</p>
     <p>&copy; 2024 - Empowering AI Education</p>
   </footer>
+
+
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+
 <df-messenger
   id="df-messenger"
   chat-title="AI Fundamentals Assistant"
@@ -475,15 +480,5 @@
   agent-id="7ae2a6b8-69f4-4825-9e7f-8c9a2f9944cf"
   language-code="en"
 ></df-messenger>
-
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-<script>
-  function openChatbot() {
-    const messenger = document.querySelector('df-messenger');
-    messenger.open(); // triggers the chat window to open
-  }
-</script>
-
-
 </body>
 </html>
