@@ -466,6 +466,14 @@
   </footer>
 
   <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+
+  <script>
+  function openChatbot() {
+    const messenger = document.querySelector('df-messenger');
+    messenger.open(); // triggers the chat window to open
+  }
+</script>
+
 <df-messenger
   intent="WELCOME"
   chat-title="AI Fundamentals Assistant"
