@@ -470,6 +470,7 @@
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
+   id="dfMessenger"
   intent="WELCOME"
   chat-title="AI Fundamentals Assistant"
   chat-icon="🧠"
@@ -477,27 +478,27 @@
   language-code="en"
 ></df-messenger>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", () => {
     const launchBtn = document.querySelector(".launch-chatbot");
-    const dfMessenger = document.querySelector("df-messenger");
+    const dfMessenger = document.querySelector("#dfMessenger");
 
-    launchBtn.addEventListener("click", function (e) {
+    launchBtn.addEventListener("click", (e) => {
       e.preventDefault();
 
-      // Repeatedly check until df-messenger shadow DOM is ready
-      const checkReady = setInterval(() => {
-        if (dfMessenger.shadowRoot) {
-          const fab = dfMessenger.shadowRoot.querySelector("df-messenger-button");
+      // Retry until the shadow DOM button exists
+      const interval = setInterval(() => {
+        const fab = dfMessenger.shadowRoot?.querySelector("df-messenger-button");
+        const btn = fab?.shadowRoot?.querySelector("button");
 
-          if (fab && fab.shadowRoot) {
-            fab.shadowRoot.querySelector("button").click();
-            clearInterval(checkReady); // stop checking
-          }
+        if (btn) {
+          btn.click();      // this opens the messenger
+          clearInterval(interval);
         }
       }, 100);
     });
   });
 </script>
+
 
 </body>
 </html>
