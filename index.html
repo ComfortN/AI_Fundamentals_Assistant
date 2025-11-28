@@ -476,17 +476,28 @@
   agent-id="7ae2a6b8-69f4-4825-9e7f-8c9a2f9944cf"
   language-code="en"
 ></df-messenger>
-  <script>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
-    const launchBtn = document.querySelector(".cta-button.launch-chatbot");
+    const launchBtn = document.querySelector(".launch-chatbot");
     const dfMessenger = document.querySelector("df-messenger");
 
     launchBtn.addEventListener("click", function (e) {
       e.preventDefault();
-      const fab = dfMessenger.shadowRoot.querySelector("df-messenger-button");
-      fab.shadowRoot.querySelector("button").click();
+
+      // Repeatedly check until df-messenger shadow DOM is ready
+      const checkReady = setInterval(() => {
+        if (dfMessenger.shadowRoot) {
+          const fab = dfMessenger.shadowRoot.querySelector("df-messenger-button");
+
+          if (fab && fab.shadowRoot) {
+            fab.shadowRoot.querySelector("button").click();
+            clearInterval(checkReady); // stop checking
+          }
+        }
+      }, 100);
     });
   });
 </script>
+
 </body>
 </html>
